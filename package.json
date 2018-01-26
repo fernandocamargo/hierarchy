@@ -2,6 +2,7 @@
   "name": "testing",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://fernandocamargo.com/hierarchy",
   "dependencies": {
     "classnames": "^2.2.5",
     "lodash": "^4.17.4",
