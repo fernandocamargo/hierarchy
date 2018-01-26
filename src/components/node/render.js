@@ -1,5 +1,6 @@
 import React from 'react';
 import { node, array } from 'prop-types';
+import classnames from 'classnames';
 
 import Nodes from 'components/nodes';
 import Actions from 'components/actions';
@@ -15,8 +16,8 @@ export const defaultProps = {
 };
 
 export default Object.assign(
-  ({ name, position, employees, actions }) => (
-    <li className="node">
+  ({ name, position, employees, expanded, actions }) => (
+    <li className={classnames('node', { expanded })}>
       <dl className="profile">
         <dt className="info name">{name}</dt>
         <dd className="info position">{position}</dd>

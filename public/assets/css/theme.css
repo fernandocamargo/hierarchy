@@ -160,10 +160,14 @@ nav h4 {
 
 .profile .actions .action.toggle a:after {
   color: #000;
-  content: '-';
+  content: '+';
   display: inline-block;
   font-size: 1.5rem;
   line-height: 1.5rem;
+}
+
+.node.expanded .profile .actions .action.toggle a:after {
+  content: '-';
 }
 
 .editor {
