@@ -28,6 +28,18 @@ export default class extends Component {
     return map(source || state.source, format);
   };
 
+  getActions = () => {
+    const { toggle, add, remove } = this;
+
+    return { toggle, add, remove };
+  };
+
+  toggle = () => console.log('toggle();');
+
+  add = () => console.log('add();');
+
+  remove = () => console.log('remove();');
+
   format = ({ position, employees }, name) => ({
     employees: flatten(employees.map(this.getNodes)),
     name,
@@ -45,13 +57,14 @@ export default class extends Component {
   drop = files => files.forEach(this.read);
 
   render() {
-    const { state: { source }, getNodes, getUploader } = this;
+    const { state: { source }, getNodes, getActions, getUploader } = this;
     const uploader = getUploader();
     const nodes = getNodes();
+    const actions = getActions();
 
     return (
       <Fragment>
-        <GUI nodes={nodes} />
+        <GUI nodes={nodes} actions={actions} />
         <Dropzone {...uploader}>
           <Editor source={source} />
         </Dropzone>

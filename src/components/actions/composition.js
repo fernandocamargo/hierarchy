@@ -1,6 +1,6 @@
 import { compose, withProps, withHandlers } from 'recompose';
 
-// import prevent from 'utils/dom/event/prevent';
+import prevent from 'utils/dom/event/prevent';
 
 export const getActions = ({ toggle, add, remove }) => [
   {
@@ -22,21 +22,9 @@ export const getActions = ({ toggle, add, remove }) => [
 
 export default compose(
   withHandlers({
-    toggle: () => event => {
-      event.preventDefault();
-      console.log('toggle();');
-      return event;
-    },
-    add: () => event => {
-      event.preventDefault();
-      console.log('add();');
-      return event;
-    },
-    remove: () => event => {
-      event.preventDefault();
-      console.log('remove();');
-      return event;
-    },
+    toggle: ({ log }) => prevent(log),
+    add: ({ log }) => prevent(log),
+    remove: ({ log }) => prevent(log),
   }),
   withProps(props => ({
     actions: getActions(props),

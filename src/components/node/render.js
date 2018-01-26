@@ -20,7 +20,7 @@ export default Object.assign(
       <dl className="profile">
         <dt className="info name">{name}</dt>
         <dd className="info position">{position}</dd>
-        <Actions />
+        <Actions log={() => console.log('log();')} />
       </dl>
       <Nodes nodes={employees} />
     </li>
