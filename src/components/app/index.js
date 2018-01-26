@@ -1,3 +1,5 @@
+import map from 'lodash/map';
+import flatten from 'lodash/flatten';
 import React, { Component, Fragment } from 'react';
 import Dropzone from 'react-dropzone';
 
@@ -8,16 +10,6 @@ export default class extends Component {
   state = {
     source: {},
   };
-
-  load = ({ currentTarget: { result } }) =>
-    this.setState({ source: JSON.parse(result) });
-
-  extract = file =>
-    Object.assign(new FileReader(), {
-      onload: this.load,
-    }).readAsBinaryString(file);
-
-  drop = files => files.forEach(this.extract);
 
   getUploader = () => ({
     accept: '.json',
@@ -30,13 +22,36 @@ export default class extends Component {
     onDrop: this.drop,
   });
 
+  getNodes = source => {
+    const { state, format } = this;
+
+    return map(source || state.source, format);
+  };
+
+  format = ({ position, employees }, name) => ({
+    employees: flatten(employees.map(this.getNodes)),
+    name,
+    position,
+  });
+
+  save = ({ currentTarget: { result } }) =>
+    this.setState({ source: JSON.parse(result) });
+
+  read = file =>
+    Object.assign(new FileReader(), {
+      onload: this.save,
+    }).readAsBinaryString(file);
+
+  drop = files => files.forEach(this.read);
+
   render() {
-    const { state: { source }, getUploader } = this;
+    const { state: { source }, getNodes, getUploader } = this;
     const uploader = getUploader();
+    const nodes = getNodes();
 
     return (
       <Fragment>
-        <GUI />
+        <GUI nodes={nodes} />
         <Dropzone {...uploader}>
           <Editor source={source} />
         </Dropzone>
