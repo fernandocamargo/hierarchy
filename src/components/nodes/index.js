@@ -13,7 +13,9 @@ export const defaultProps = {
 };
 
 export default Object.assign(
-  ({ nodes }) => <ul className="nodes">{forEach(nodes).render(Node)}</ul>,
+  ({ nodes, actions }) => (
+    <ul className="nodes">{forEach(nodes).render(Node, { actions })}</ul>
+  ),
   {
     displayName: 'Nodes',
     propTypes,

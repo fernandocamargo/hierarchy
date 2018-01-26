@@ -15,14 +15,14 @@ export const defaultProps = {
 };
 
 export default Object.assign(
-  ({ name, position, employees }) => (
+  ({ name, position, employees, actions }) => (
     <li className="node">
       <dl className="profile">
         <dt className="info name">{name}</dt>
         <dd className="info position">{position}</dd>
-        <Actions log={() => console.log('log();')} />
+        <Actions actions={actions} />
       </dl>
-      <Nodes nodes={employees} />
+      <Nodes nodes={employees} actions={actions} />
     </li>
   ),
   {

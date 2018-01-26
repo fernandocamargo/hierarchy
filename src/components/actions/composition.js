@@ -22,9 +22,9 @@ export const getActions = ({ toggle, add, remove }) => [
 
 export default compose(
   withHandlers({
-    toggle: ({ log }) => prevent(log),
-    add: ({ log }) => prevent(log),
-    remove: ({ log }) => prevent(log),
+    toggle: ({ actions: { toggle } }) => prevent(toggle),
+    add: ({ actions: { add } }) => prevent(add),
+    remove: ({ actions: { remove } }) => prevent(remove),
   }),
   withProps(props => ({
     actions: getActions(props),
