@@ -13,8 +13,7 @@ export const defaultProps = {
 };
 
 export default Object.assign(
-  ({ nodes }) =>
-    !!nodes.length && <ul className="nodes">{forEach(nodes).render(Node)}</ul>,
+  ({ nodes }) => <ul className="nodes">{forEach(nodes).render(Node)}</ul>,
   {
     displayName: 'Nodes',
     propTypes,

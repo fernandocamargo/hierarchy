@@ -1,6 +1,11 @@
 import React from 'react';
 import { string } from 'prop-types';
 
+export const propTypes = {
+  name: string.isRequired,
+  url: string.isRequired,
+};
+
 export default Object.assign(
   ({ name, url }) => (
     <h1 className="brand">
@@ -11,9 +16,6 @@ export default Object.assign(
   ),
   {
     displayName: 'Brand',
-    propTypes: {
-      name: string.isRequired,
-      url: string.isRequired,
-    },
+    propTypes,
   },
 );
