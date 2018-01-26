@@ -6,18 +6,18 @@ import classnames from 'classnames';
 export const propTypes = {
   title: node.isRequired,
   className: any,
-  handler: func,
+  action: func,
 };
 
 export const defaultProps = {
   className: undefined,
-  handler: noop,
+  action: noop,
 };
 
 export default Object.assign(
-  ({ title, className, handler }) => (
+  ({ title, className, action }) => (
     <li className={classnames('action', className)}>
-      <a href="" title={title} onClick={handler}>
+      <a href="" title={title} onClick={action}>
         {title}
       </a>
     </li>

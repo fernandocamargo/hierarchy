@@ -1,6 +1,8 @@
-export default handler => event => {
+import call from 'utils/function/call';
+
+export default callback => event => {
   event.preventDefault();
-  handler();
+  call(callback).safely();
 
   return event;
 };

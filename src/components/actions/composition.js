@@ -6,17 +6,17 @@ export const getActions = ({ toggle, add, remove }) => [
   {
     className: 'toggle',
     title: 'Toggle',
-    handler: toggle,
+    action: toggle,
   },
   {
     className: 'add',
     title: 'Add random employee',
-    handler: add,
+    action: add,
   },
   {
     className: 'remove',
     title: 'Remove employee',
-    handler: remove,
+    action: remove,
   },
 ];
 
