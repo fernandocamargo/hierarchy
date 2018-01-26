@@ -129,11 +129,11 @@ nav h4 {
   width: 100%;
 }
 
-.profile .actions .action:not(.toogle) {
+.profile .actions .action:not(.toggle) {
   display: none;
 }
 
-.profile .actions .action.toogle {
+.profile .actions .action.toggle {
   background-color: #ededed;
   border: solid 1px #8e8e8e;
   border-radius: 50%;
@@ -147,7 +147,7 @@ nav h4 {
   z-index: 1;
 }
 
-.profile .actions .action.toogle a {
+.profile .actions .action.toggle a {
   font-size: 0;
   height: 100%;
   left: 0;
@@ -157,7 +157,7 @@ nav h4 {
   width: 100%;
 }
 
-.profile .actions .action.toogle a:after {
+.profile .actions .action.toggle a:after {
   color: #000;
   content: '-';
   display: inline-block;

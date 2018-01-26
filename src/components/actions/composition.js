@@ -1,24 +1,43 @@
-import { compose, withProps } from 'recompose';
+import { compose, withProps, withHandlers } from 'recompose';
 
-export const getActions = ({ toogle, add, remove }) => [
+// import prevent from 'utils/dom/event/prevent';
+
+export const getActions = ({ toggle, add, remove }) => [
   {
-    className: 'toogle',
-    title: 'Toogle',
-    action: toogle,
+    className: 'toggle',
+    title: 'Toggle',
+    handler: toggle,
   },
   {
     className: 'add',
     title: 'Add random employee',
-    action: add,
+    handler: add,
   },
   {
     className: 'remove',
     title: 'Remove employee',
-    action: remove,
+    handler: remove,
   },
 ];
 
 export default compose(
+  withHandlers({
+    toggle: () => event => {
+      event.preventDefault();
+      console.log('toggle();');
+      return event;
+    },
+    add: () => event => {
+      event.preventDefault();
+      console.log('add();');
+      return event;
+    },
+    remove: () => event => {
+      event.preventDefault();
+      console.log('remove();');
+      return event;
+    },
+  }),
   withProps(props => ({
     actions: getActions(props),
   })),
