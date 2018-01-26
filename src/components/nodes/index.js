@@ -2,7 +2,7 @@ import React from 'react';
 import { arrayOf, shape } from 'prop-types';
 
 import forEach from 'utils/rendering/for-each';
-import Node, { propTypes as nodePropTypes } from 'components/node';
+import Node, { propTypes as nodePropTypes } from 'components/node/render';
 
 export const propTypes = {
   nodes: arrayOf(shape(nodePropTypes)),
