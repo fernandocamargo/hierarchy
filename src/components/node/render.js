@@ -16,12 +16,18 @@ export const defaultProps = {
 };
 
 export default Object.assign(
-  ({ name, position, employees, expanded, actions }) => (
+  ({ name, position, employees, expanded, path, actions }) => (
     <li className={classnames('node', { expanded })}>
       <dl className="profile">
         <dt className="info name">{name}</dt>
         <dd className="info position">{position}</dd>
-        <Actions actions={actions} />
+        <Actions
+          actions={{
+            toggle: () => actions.toggle(path),
+            add: () => actions.add(path),
+            remove: () => actions.remove(path),
+          }}
+        />
       </dl>
       <Nodes nodes={employees} actions={actions} />
     </li>

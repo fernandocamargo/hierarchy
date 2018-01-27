@@ -1,11 +1,11 @@
 {
-  "name": "testing",
+  "name": "hierarchy",
   "version": "0.1.0",
   "private": true,
   "homepage": "http://fernandocamargo.com/hierarchy",
   "dependencies": {
     "classnames": "^2.2.5",
-    "lodash": "^4.17.4",
+    "immutability-helper": "^2.6.4",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
