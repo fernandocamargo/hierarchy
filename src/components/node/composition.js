@@ -15,9 +15,16 @@ export const mapEvents = {
   remove: ({ path, actions: { remove } }) => bind(remove).with(path),
 };
 
-export const getProps = ({ employees, actions, toggle, add, remove }) => ({
+export const getProps = ({
+  employees,
+  expanded,
+  actions,
+  toggle,
+  add,
+  remove,
+}) => ({
   actions: { actions: { toggle, add, remove } },
-  nodes: { nodes: employees, actions },
+  nodes: expanded && { nodes: employees, actions },
 });
 
 export default compose(
