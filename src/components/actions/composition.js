@@ -20,13 +20,14 @@ export const getActions = ({ toggle, add, remove }) => [
   },
 ];
 
-export default compose(
-  withHandlers({
-    toggle: ({ actions: { toggle } }) => prevent(toggle),
-    add: ({ actions: { add } }) => prevent(add),
-    remove: ({ actions: { remove } }) => prevent(remove),
-  }),
-  withProps(props => ({
-    actions: getActions(props),
-  })),
-);
+export const mapEvents = {
+  toggle: ({ actions: { toggle } }) => prevent(toggle),
+  add: ({ actions: { add } }) => prevent(add),
+  remove: ({ actions: { remove } }) => prevent(remove),
+};
+
+export const getProps = props => ({
+  actions: getActions(props),
+});
+
+export default compose(withHandlers(mapEvents), withProps(getProps));
