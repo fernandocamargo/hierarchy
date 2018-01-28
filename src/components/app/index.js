@@ -7,10 +7,13 @@ import flatten from 'utils/object/flatten';
 import GUI from 'components/gui';
 import Editor from 'components/editor';
 
+import source from 'mock/source';
+import nodes from 'mock/nodes';
+
 export default class extends Component {
   state = {
-    source: {},
-    nodes: [],
+    source,
+    nodes,
   };
 
   getUploader = () => ({
@@ -84,24 +87,28 @@ export default class extends Component {
     };
   };
 
-  save = ({ currentTarget: { result } }) => this.setState(this.parse(result));
+  save = data => this.setState(this.parse(data));
+
+  load = ({ currentTarget: { result } }) => this.save(result);
 
   read = file =>
     Object.assign(new FileReader(), {
-      onload: this.save,
+      onload: this.load,
     }).readAsBinaryString(file);
 
   drop = files => files.forEach(this.read);
 
+  paste = ({ clipboardData }) => this.save(clipboardData.getData('Text'));
+
   render() {
-    const { state: { source, nodes }, getActions, getUploader } = this;
+    const { state: { source, nodes }, getActions, getUploader, paste } = this;
     const uploader = getUploader();
     const actions = getActions();
 
     return (
       <Fragment>
         <GUI nodes={nodes} actions={actions} />
-        <Dropzone {...uploader}>
+        <Dropzone {...uploader} onPaste={paste}>
           <Editor source={source} />
         </Dropzone>
       </Fragment>
