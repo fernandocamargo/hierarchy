@@ -3,11 +3,11 @@ import React from 'react';
 import forEach from 'utils/rendering/for-each';
 import Action from 'components/action';
 
-export default ({ actions }) => (
+export default ({ features }) => (
   <dd className="actions">
     <nav>
       <h4>Options</h4>
-      <ul>{forEach(actions).render(Action)}</ul>
+      <ul>{forEach(features).render(Action)}</ul>
     </nav>
   </dd>
 );

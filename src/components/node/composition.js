@@ -1,6 +1,7 @@
 import { compose, shouldUpdate, withHandlers, withProps } from 'recompose';
 
 import bind from 'utils/function/bind';
+import only from 'utils/object/only';
 
 export const onlyWhen = (current, next) =>
   current.name !== next.name ||
@@ -23,7 +24,13 @@ export const getProps = ({
   add,
   remove,
 }) => ({
-  actions: { actions: { toggle, add, remove } },
+  actions: {
+    features: {
+      toggle: only(toggle).when(!!employees.length),
+      add,
+      remove,
+    },
+  },
   nodes: expanded && { nodes: employees, actions },
 });
 
