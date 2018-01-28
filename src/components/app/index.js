@@ -3,6 +3,7 @@ import React, { Component, Fragment } from 'react';
 import Dropzone from 'react-dropzone';
 
 import values from 'utils/object/values';
+import flatten from 'utils/object/flatten';
 import GUI from 'components/gui';
 import Editor from 'components/editor';
 
@@ -23,14 +24,20 @@ export default class extends Component {
     multiple: false,
   });
 
-  getNodes = (source, path = { source: [], nodes: [] }, index) =>
-    values(source, this.format(path, index));
+  getNodes = (node, path = { source: [], nodes: [] }) =>
+    values(node, this.format(path));
 
   getActions = () => {
     const { toggle, add, remove } = this;
 
     return { toggle, add, remove };
   };
+
+  getEmployess = ({ path: { source, nodes }, employees }) =>
+    this.getNodes(flatten(employees), {
+      source: source.concat('employees'),
+      nodes: nodes.concat('employees'),
+    });
 
   build = value => (stack, key, index) => ({ [key]: !index ? value : stack });
 
@@ -51,61 +58,9 @@ export default class extends Component {
 
   remove = path => console.log('remove();', path);
 
-  /*
-  getEmployee = ({ source, nodes }) => (employees, employee, index) =>
-    employees.concat(
-      this.getNodes(employee, {
-        source: source.concat(index),
-        nodes,
-      }),
-    );
-
-  getEmployees = ({ path: { source, nodes }, employees }) =>
-    employees.reduce(
-      this.getEmployee({
-        source: source.concat('employees'),
-        nodes: nodes.concat('employees'),
-      }),
-      [],
-    );
-  */
-
-  getEmployees = (path, employees) =>
-    employees.reduce(
-      (s, e, i) =>
-        s.concat(
-          this.getNodes(
-            e,
-            {
-              source: path.source.concat('employees'),
-              nodes: path.nodes.concat('employees'),
-            },
-            i,
-          ),
-        ),
-      [],
-    );
-
-  format = ({ source, nodes }, _index) => (
-    { employees, ...person },
-    name,
-    index,
-  ) => {
-    const path = {
-      source: source.concat(name),
-      nodes: nodes.concat(!isNaN(_index) ? _index : index),
-    };
-
-    return {
-      ...person,
-      employees: this.getEmployees(path, employees),
-      expanded: true,
-      path,
-      name,
-    };
-    /*
+  format = ({ source, nodes }) => (details, name, index) => {
     const person = {
-      ...infos,
+      ...details,
       path: {
         source: source.concat(name),
         nodes: nodes.concat(index),
@@ -115,9 +70,8 @@ export default class extends Component {
     };
 
     return Object.assign(person, {
-      employees: this.getEmployees(person),
+      employees: this.getEmployess(person),
     });
-    */
   };
 
   parse = content => {
