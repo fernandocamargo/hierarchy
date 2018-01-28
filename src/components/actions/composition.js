@@ -8,6 +8,8 @@ export const mapEvents = {
   remove: ({ features: { remove } }) => prevent(remove),
 };
 
+export const isEnabled = ({ enabled = true }) => enabled;
+
 export const getProps = ({ features, toggle, add, remove }) => ({
   features: [
     {
@@ -26,7 +28,7 @@ export const getProps = ({ features, toggle, add, remove }) => ({
       title: 'Remove employee',
       action: remove,
     },
-  ].filter(({ enabled = true }) => enabled),
+  ].filter(isEnabled),
 });
 
 export default compose(withHandlers(mapEvents), withProps(getProps));
