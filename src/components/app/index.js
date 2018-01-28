@@ -1,14 +1,18 @@
 import update from 'immutability-helper';
 import React, { Component, Fragment } from 'react';
 import Dropzone from 'react-dropzone';
+import Chance from 'chance';
 
 import values from 'utils/object/values';
 import flatten from 'utils/object/flatten';
+import fill from 'utils/object/fill';
 import GUI from 'components/gui';
 import Editor from 'components/editor';
 
 import source from 'mock/source';
 import nodes from 'mock/nodes';
+
+export const generator = new Chance();
 
 export default class extends Component {
   state = {
@@ -42,24 +46,37 @@ export default class extends Component {
       nodes: nodes.concat('employees'),
     });
 
-  build = value => (stack, key, index) => ({ [key]: !index ? value : stack });
-
-  fill = (path, value) =>
-    path
-      .slice()
-      .reverse()
-      .reduce(this.build(value), {});
-
   toggle = ({ nodes }) =>
     this.setState(state =>
       update(state, {
-        nodes: this.fill(nodes, { $toggle: ['expanded'] }),
+        nodes: fill(nodes, { $toggle: ['expanded'] }),
       }),
     );
 
-  add = path => console.log('add();', path);
+  add = ({ nodes }) =>
+    this.setState(state =>
+      update(state, {
+        nodes: fill(nodes.concat('employees'), {
+          $push: [
+            {
+              name: generator.first(),
+              position: generator.profession({ rank: true }),
+              expanded: true,
+              employees: [],
+            },
+          ],
+        }),
+      }),
+    );
 
-  remove = path => console.log('remove();', path);
+  remove = ({ nodes }) =>
+    this.setState(state =>
+      update(state, {
+        nodes: fill(nodes.slice(0, -1), {
+          $splice: [[nodes.slice(-1), 1]],
+        }),
+      }),
+    );
 
   format = ({ source, nodes }) => (details, name, index) => {
     const person = {

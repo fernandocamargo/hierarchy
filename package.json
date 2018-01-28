@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://fernandocamargo.com/hierarchy",
   "dependencies": {
+    "chance": "^1.0.13",
     "classnames": "^2.2.5",
     "immutability-helper": "^2.6.4",
     "prop-types": "^15.6.0",
