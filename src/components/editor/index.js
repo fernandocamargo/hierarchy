@@ -1,21 +1,4 @@
-import React from 'react';
-import { object } from 'prop-types';
+import * as statics from './statics';
+import render from './render';
 
-export const propTypes = {
-  source: object,
-};
-
-export const defaultProps = {
-  source: {},
-};
-
-export default Object.assign(
-  ({ source }) => (
-    <pre className="source">{JSON.stringify(source, null, 2)}</pre>
-  ),
-  {
-    displayName: 'Editor',
-    propTypes,
-    defaultProps,
-  },
-);
+export default Object.assign(render, statics);
