@@ -41,7 +41,7 @@ export default class extends Component {
 
   build = value => (stack, key, index) => ({ [key]: !index ? value : stack });
 
-  update = (path, value) =>
+  fill = (path, value) =>
     path
       .slice()
       .reverse()
@@ -50,7 +50,7 @@ export default class extends Component {
   toggle = ({ nodes }) =>
     this.setState(state =>
       update(state, {
-        nodes: this.update(nodes, { $toggle: ['expanded'] }),
+        nodes: this.fill(nodes, { $toggle: ['expanded'] }),
       }),
     );
 
