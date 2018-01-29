@@ -13,12 +13,6 @@ export const isEnabled = ({ enabled = true }) => enabled;
 export const getProps = ({ features, toggle, add, remove }) => ({
   features: [
     {
-      className: 'toggle',
-      title: 'Toggle',
-      action: toggle,
-      enabled: !!features.toggle,
-    },
-    {
       className: 'add',
       title: 'Add random employee',
       action: add,
@@ -27,6 +21,12 @@ export const getProps = ({ features, toggle, add, remove }) => ({
       className: 'remove',
       title: 'Remove employee',
       action: remove,
+    },
+    {
+      className: 'toggle',
+      title: 'Toggle',
+      action: toggle,
+      enabled: !!features.toggle,
     },
   ].filter(isEnabled),
 });

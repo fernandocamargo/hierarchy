@@ -117,12 +117,9 @@ nav h4 {
   font-weight: bold;
 }
 
-.profile .info.position {
-  font-style: italic;
-}
-
-/*
-.profile .actions {
+.profile .info.name:before {
+  content: '';
+  display: block;
   height: 100%;
   left: 0;
   position: absolute;
@@ -130,10 +127,33 @@ nav h4 {
   width: 100%;
 }
 
-.profile .actions .action:not(.toggle) {
-  display: none;
+.profile .info.position {
+  font-style: italic;
 }
-*/
+
+.profile .actions {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s linear;
+}
+
+.profile .info.name:hover ~ .actions {
+  max-height: 3rem;
+}
+
+.profile .actions nav ul {
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0.5rem 0 0.25rem 0;
+  white-space: nowrap;
+}
+
+.profile .actions .action:not(.toggle) {
+  padding: 0.5rem;
+  position: relative;
+}
 
 .profile .actions .action.toggle {
   background-color: #ededed;
@@ -147,6 +167,18 @@ nav h4 {
   transform: translateY(-50%);
   width: 1.5rem;
   z-index: 1;
+}
+
+.profile .actions .action:not(.toggle):not(:first-child):after {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVQYV2NkYGD4z8DAwMjIAAUADikBA/gvnngAAAAASUVORK5CYII=);
+  content: '';
+  display: block;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 50%;
+  width: 1px;
 }
 
 .profile .actions .action a {
@@ -170,6 +202,11 @@ nav h4 {
 .profile .actions .action:not(.toggle) a:after {
   font-size: 0.75rem;
   line-height: 0.75rem;
+  text-decoration: none;
+  text-transform: lowercase;
+}
+
+.profile .actions .action:not(.toggle) a:hover:after {
   text-decoration: underline;
 }
 
@@ -188,11 +225,13 @@ nav h4 {
 }
 
 .profile .actions .action.add a:after {
-  content: 'add';
+  color: #23ce6b;
+  content: 'Add employee';
 }
 
 .profile .actions .action.remove a:after {
-  content: 'delete';
+  color: #bd1e1e;
+  content: 'Remove';
 }
 
 .editor {
@@ -217,11 +256,11 @@ nav h4 {
 }
 
 .editor.intention.accepting:before {
-  background-image: linear-gradient(#fff, #0e8dbc);
+  background-image: linear-gradient(#fff, #23ce6b);
 }
 
 .editor.intention.rejecting:before {
-  background-image: linear-gradient(#fff, red);
+  background-image: linear-gradient(#fff, #bd1e1e);
 }
 
 .editor.intention:after {
@@ -251,7 +290,7 @@ nav h4 {
 }
 
 .editor.intention.rejecting:after {
-  border-image: linear-gradient(red, #fff) 20;
+  border-image: linear-gradient(#bd1e1e, #fff) 20;
   content: '\1F4E5 \A Invalid \A file format!';
 }
 
