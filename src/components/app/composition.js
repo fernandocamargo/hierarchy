@@ -1,6 +1,7 @@
 import { compose, withStateHandlers, withHandlers } from 'recompose';
 
 import property from 'utils/object/property';
+import connect from 'utils/state/connect';
 import read from 'utils/file-reader/read';
 import get from 'utils/clipboard/get';
 
@@ -11,6 +12,13 @@ export const setInitialState = () => ({
   nodes: [],
 });
 
+export const setState = {
+  set: connect(set),
+  toggle: connect(toggle),
+  add: connect(add),
+  remove: connect(remove),
+};
+
 export const mapEvents = {
   toggle: property('toggle'),
   add: property('add'),
@@ -20,11 +28,6 @@ export const mapEvents = {
 };
 
 export default compose(
-  withStateHandlers(setInitialState, {
-    set: state => content => set(content)(state),
-    toggle: state => path => toggle(path)(state),
-    add: state => path => add(path)(state),
-    remove: state => path => remove(path)(state),
-  }),
+  withStateHandlers(setInitialState, setState),
   withHandlers(mapEvents),
 );
