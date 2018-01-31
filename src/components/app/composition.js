@@ -1,26 +1,30 @@
-import { compose, withHandlers, withProps } from 'recompose';
+import { compose, withStateHandlers, withHandlers } from 'recompose';
 
-export const mapEvents = {
-  toggle: () => (...params) => console.log('toggle();', ...params),
-  add: () => (...params) => console.log('add();', ...params),
-  remove: () => (...params) => console.log('remove();', ...params),
-  paste: () => ({ clipboardData }) =>
-    console.log('paste();', clipboardData.getData('Text')),
-  drop: () => (...params) => console.log('drop();', ...params),
-};
+import property from 'utils/object/property';
+import read from 'utils/file-reader/read';
+import get from 'utils/clipboard/get';
 
-export const getProps = ({ toggle, add, remove, drop }) => ({
-  actions: { toggle, add, remove },
-  uploader: {
-    onDrop: drop,
-    accept: '.json',
-    className: 'component editor',
-    activeClassName: 'intention',
-    acceptClassName: 'accepting',
-    rejectClassName: 'rejecting',
-    disableClick: true,
-    multiple: false,
-  },
+import { set, toggle, add, remove } from './reducers';
+
+export const setInitialState = () => ({
+  source: {},
+  nodes: [],
 });
 
-export default compose(withHandlers(mapEvents), withProps(getProps));
+export const mapEvents = {
+  toggle: property('toggle'),
+  add: property('add'),
+  remove: property('remove'),
+  paste: ({ set }) => get().then(set),
+  drop: ({ set }) => files => files.forEach(read().then(set)),
+};
+
+export default compose(
+  withStateHandlers(setInitialState, {
+    set: state => content => set(content)(state),
+    toggle: state => path => toggle(path)(state),
+    add: state => path => add(path)(state),
+    remove: state => path => remove(path)(state),
+  }),
+  withHandlers(mapEvents),
+);
