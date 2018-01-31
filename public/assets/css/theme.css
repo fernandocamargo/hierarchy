@@ -131,6 +131,7 @@ nav h4 {
   font-style: italic;
 }
 
+/*
 .profile .actions {
   max-height: 0;
   overflow: hidden;
@@ -140,6 +141,7 @@ nav h4 {
 .profile .info.name:hover ~ .actions {
   max-height: 3rem;
 }
+*/
 
 .profile .actions nav ul {
   background-color: #f2f2f2;
