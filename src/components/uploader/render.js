@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Dropzone from 'react-dropzone';
 
 export default ({ children, onDrop, onPaste }) => (

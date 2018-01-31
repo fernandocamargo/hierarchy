@@ -258,7 +258,7 @@ nav h4 {
 }
 
 .editor.intention.accepting:before {
-  background-image: linear-gradient(#fff, #23ce6b);
+  background-image: linear-gradient(#fff, #0e8dbc);
 }
 
 .editor.intention.rejecting:before {
