@@ -4,7 +4,7 @@ export default ({ source, nodes }) => (details, name, index) => {
   const person = {
     ...details,
     path: {
-      source: source.concat(name),
+      source: source.concat(!source.length ? name : [index, name]),
       nodes: nodes.concat(index),
     },
     expanded: true,

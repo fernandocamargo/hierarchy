@@ -21,22 +21,40 @@ export const toggle = ({ nodes }) => state =>
     nodes: fill(nodes, { $toggle: ['expanded'] }),
   });
 
-export const add = ({ nodes }) => state =>
-  update(state, {
+export const add = ({ source, nodes }) => state => {
+  const name = generator.first();
+  const position = generator.profession({ rank: true });
+  const employees = [];
+
+  return update(state, {
+    source: fill(source.concat('employees'), {
+      $push: [
+        {
+          [name]: {
+            position,
+            employees,
+          },
+        },
+      ],
+    }),
     nodes: fill(nodes.concat('employees'), {
       $push: [
         {
-          name: generator.first(),
-          position: generator.profession({ rank: true }),
           expanded: true,
-          employees: [],
+          name,
+          position,
+          employees,
         },
       ],
     }),
   });
+};
 
-export const remove = ({ nodes }) => state =>
+export const remove = ({ source, nodes }) => state =>
   update(state, {
+    source: fill(source.slice(0, -2), {
+      $splice: [[source.slice(-2)[0], 1]],
+    }),
     nodes: fill(nodes.slice(0, -1), {
       $splice: [[nodes.slice(-1), 1]],
     }),

@@ -131,18 +131,6 @@ nav h4 {
   font-style: italic;
 }
 
-/*
-.profile .actions {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.1s linear;
-}
-
-.profile .info.name:hover ~ .actions {
-  max-height: 3rem;
-}
-*/
-
 .profile .actions nav ul {
   background-color: #f2f2f2;
   display: flex;
@@ -152,9 +140,24 @@ nav h4 {
   white-space: nowrap;
 }
 
+.profile .actions .action.toggle:hover ~ .action:not(.toggle),
 .profile .actions .action:not(.toggle) {
-  padding: 0.5rem;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 0.5rem;
   position: relative;
+  transition:
+    max-height 0.2s linear,
+    opacity 0.15s linear,
+    padding 0.2s linear;
+}
+
+.profile .actions:hover .action:not(.toggle),
+.profile .info.name:hover ~ .actions .action:not(.toggle) {
+  opacity: 1;
+  max-height: 2rem;
+  padding: 0.5rem;
 }
 
 .profile .actions .action.toggle {
@@ -171,11 +174,11 @@ nav h4 {
   z-index: 1;
 }
 
-.profile .actions .action:not(.toggle):not(:first-child):after {
+.profile .actions .action:not(.toggle):not(:last-child):after {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVQYV2NkYGD4z8DAwMjIAAUADikBA/gvnngAAAAASUVORK5CYII=);
   content: '';
   display: block;
-  left: 0;
+  right: 0;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
