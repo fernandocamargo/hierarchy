@@ -19,7 +19,86 @@ nav h4 {
 
 .app .component {
   overflow: auto;
-  width: 50%;
+  width: calc(50% - 1.5rem);
+}
+
+.app > nav {
+  background: linear-gradient(to bottom, #272635 17.5rem, #f7f9f9);
+  overflow: hidden;
+  width: 3rem;
+}
+
+.app > nav a {
+  color: #fff;
+  display: block;
+  font-family: 'Material Icons';
+  font-size: 0;
+  font-style: normal;
+  font-weight: 400;
+  overflow: hidden;
+  padding: 1rem 0;
+  text-align: center;
+  text-decoration: none;
+}
+
+.app > nav .action.toggle a {
+  background-color: #f7f9f9;
+}
+
+.app > nav .action.load a {
+  background-color: #e1eef2;
+}
+
+.app > nav .action.clear a {
+  background-color: #bbc8cE;
+}
+
+.app > nav .action.edit a {
+  background-color: #919a9e;
+}
+
+.app > nav .action.download a {
+  background-color: #272635;
+}
+
+.app > nav .action a:hover {
+  background-color: #7E78D2;
+  color: #fff;
+}
+
+.app > nav .action a:after {
+  display: block;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.app > nav .action.toggle a:after {
+  color: #bbc8cE;
+  content: '\E8D4';
+}
+
+.app > nav .action.load a:after {
+  content: '\E226';
+}
+
+.app > nav .action.clear a:after {
+  content: '\E872';
+}
+
+.app > nav .action.edit a:after {
+  content: '\E150';
+}
+
+.app > nav .action.download a:after {
+  content: '\E2C4';
+}
+
+.app > nav .action.help a:after {
+  content: '\E8FD';
+}
+
+.app > nav .action a:hover:after {
+  color: inherit;
 }
 
 .gui {
@@ -257,7 +336,7 @@ nav h4 {
   right: 0;
   opacity: 0.5;
   top: 0;
-  width: 50vw;
+  width: calc(50vw - 1.5rem);
 }
 
 .editor.intention.accepting:before {
@@ -286,7 +365,7 @@ nav h4 {
     0 3px 5px rgba(0, 0, 0, 0.2);
   top: 1rem;
   white-space: pre;
-  width: calc(50vw - 3rem);
+  width: calc(50vw - 4.5rem);
 }
 
 .editor.intention.accepting:after {
