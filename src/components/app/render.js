@@ -1,12 +1,25 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import GUI from 'components/gui';
 import Uploader from 'components/uploader';
 import Editor from 'components/editor';
 
-export default ({ source, nodes, toggle, add, remove, drop, paste }) => (
-  <Fragment>
-    <GUI nodes={nodes} actions={{ toggle, add, remove }} />
+export default ({
+  source,
+  nodes,
+  toggle,
+  add,
+  remove,
+  drop,
+  paste,
+  editor,
+}) => (
+  <Uploader onDrop={drop} onPaste={paste}>
+    <GUI
+      nodes={nodes}
+      actions={{ toggle, add, remove }}
+      fullscreen={!editor.active}
+    />
     <nav>
       <h4>Options</h4>
       <ul>
@@ -37,8 +50,6 @@ export default ({ source, nodes, toggle, add, remove, drop, paste }) => (
         </li>
       </ul>
     </nav>
-    <Uploader onDrop={drop} onPaste={paste}>
-      <Editor source={source} />
-    </Uploader>
-  </Fragment>
+    <Editor source={source} active={editor.active} />
+  </Uploader>
 );

@@ -39,6 +39,7 @@ nav h4 {
   padding: 1rem 0;
   text-align: center;
   text-decoration: none;
+  transition: background-color 0.2s linear;
 }
 
 .app > nav .action.toggle a {
@@ -50,7 +51,7 @@ nav h4 {
 }
 
 .app > nav .action.clear a {
-  background-color: #bbc8cE;
+  background-color: #bbc8ce;
 }
 
 .app > nav .action.edit a {
@@ -62,7 +63,7 @@ nav h4 {
 }
 
 .app > nav .action a:hover {
-  background-color: #7E78D2;
+  background-color: #7e78d2;
   color: #fff;
 }
 
@@ -103,6 +104,10 @@ nav h4 {
 
 .gui {
   height: 100%;
+}
+
+.gui.fullscreen {
+  width: calc(100% - 3rem);
 }
 
 .gui .brand {
@@ -321,6 +326,11 @@ nav h4 {
 .editor {
   background-color: #f6f6f6;
   position: relative;
+}
+
+.editor:not(.active) {
+  overflow: hidden;
+  width: 0;
 }
 
 .editor.intention:before,

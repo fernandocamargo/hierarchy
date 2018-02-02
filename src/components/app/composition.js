@@ -8,6 +8,10 @@ import get from 'utils/clipboard/get';
 import { set, toggle, add, remove } from './reducers';
 
 export const setInitialState = () => ({
+  editor: {
+    active: false,
+    disabled: true,
+  },
   source: {},
   nodes: [],
 });
