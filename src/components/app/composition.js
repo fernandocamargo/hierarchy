@@ -5,16 +5,7 @@ import connect from 'utils/state/connect';
 import read from 'utils/file-reader/read';
 import get from 'utils/clipboard/get';
 
-import { set, toggle, add, remove } from './reducers';
-
-export const setInitialState = () => ({
-  editor: {
-    active: false,
-    disabled: true,
-  },
-  source: {},
-  nodes: [],
-});
+import { initial, set, toggle, add, remove } from './reducers';
 
 export const setState = {
   set: connect(set),
@@ -32,6 +23,6 @@ export const mapEvents = {
 };
 
 export default compose(
-  withStateHandlers(setInitialState, setState),
+  withStateHandlers(initial, setState),
   withHandlers(mapEvents),
 );

@@ -12,7 +12,7 @@ export default ({ children, onDrop, onPaste }) => (
     disableClick={true}
     multiple={false}
     onPaste={onPaste}
-    ref={console.log}
+    ref={() => {}}
   >
     {() => children}
   </Dropzone>

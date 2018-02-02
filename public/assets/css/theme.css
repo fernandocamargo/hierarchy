@@ -324,7 +324,7 @@ nav h4 {
 }
 
 .editor {
-  background-color: #f6f6f6;
+  background-color: #272822;
   position: relative;
 }
 
@@ -401,20 +401,25 @@ nav h4 {
   color: #a5a5a5;
 }
 
-.editor .source .attribute {
-  color: #87a330;
+.editor .source .property {
+  color: #e6db74;
 }
 
-.editor .source .attribute.quoted {
-  color: #f15152;
+.editor .source .string {
+  color: #66d9ef;
 }
 
-.editor .source .value {
-  color: #347fc4;
+.editor .source .punctuation {
+  color: #75715e;
 }
 
-.editor .source .bracket {
-  color: #767676;
+.editor .source .array {
+  color: #ae81ff;
+}
+
+.editor .source .bracket,
+.editor .source .operator {
+  color: #75715e;
 }
 
 @keyframes pulse {

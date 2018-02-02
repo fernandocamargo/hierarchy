@@ -6,6 +6,15 @@ import get from 'utils/nodes/get';
 
 export const generator = new Chance();
 
+export const initial = () => ({
+  editor: {
+    active: true,
+    disabled: true,
+  },
+  source: {},
+  nodes: [],
+});
+
 export const set = content => state => {
   const source = JSON.parse(content);
   const nodes = get(source);
@@ -46,6 +55,10 @@ export const add = ({ source, nodes }) => state => {
           employees,
         },
       ],
+      $apply: employees => {
+        console.log({ employees });
+        return employees;
+      },
     }),
   });
 };
