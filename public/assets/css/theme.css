@@ -402,6 +402,10 @@ nav h4 {
 }
 
 .editor .source .property {
+  color: #f92672;
+}
+
+.editor .source .property .reserved {
   color: #e6db74;
 }
 
@@ -409,17 +413,14 @@ nav h4 {
   color: #66d9ef;
 }
 
-.editor .source .punctuation {
+.editor .source .array {
   color: #75715e;
 }
 
-.editor .source .array {
-  color: #ae81ff;
-}
-
+.editor .source .punctuation,
 .editor .source .bracket,
 .editor .source .operator {
-  color: #75715e;
+  color: #49483e;
 }
 
 @keyframes pulse {

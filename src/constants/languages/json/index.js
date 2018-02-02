@@ -1,5 +1,12 @@
+import reserved from 'constants/source/attributes/reserved';
+
 export default {
-  property: /"(?:\\.|[^\\"\r\n])*"(?=\s*:)/i,
+  property: {
+    pattern: /"(?:\\.|[^\\"\r\n])*"(?=\s*:)/i,
+    inside: {
+      reserved: new RegExp(`"(${reserved.join('|')})*"`),
+    },
+  },
   string: {
     pattern: /"(?:\\.|[^\\"\r\n])*"(?!\s*:)/,
     greedy: true,
