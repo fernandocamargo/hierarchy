@@ -1,24 +1,22 @@
-import Prism from 'prismjs';
 import { compose, lifecycle } from 'recompose';
 import { findDOMNode } from 'react-dom';
 
-import json from 'constants/languages/json';
+import highlight from 'utils/source/highlight';
 
-const highlight = component => {
+export const replace = component => {
   const { props: { source } } = component;
   const node = findDOMNode(component);
-  const code = JSON.stringify(source, null, 2);
 
-  node.innerHTML = Prism.highlight(code, json);
+  node.innerHTML = highlight(source);
 };
 
 export default compose(
   lifecycle({
     componentDidMount() {
-      return highlight(this);
+      return replace(this);
     },
     componentDidUpdate() {
-      return highlight(this);
+      return replace(this);
     },
   }),
 );
