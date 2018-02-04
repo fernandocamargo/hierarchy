@@ -1,14 +1,15 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 
-export default ({ children, onDrop, onPaste }) => (
+export default ({ register, children, onDrop, onPaste }) => (
   <Dropzone
     onDrop={onDrop}
     className="app"
+    disablePreview={true}
     disableClick={true}
     multiple={false}
     onPaste={onPaste}
-    ref={() => {}}
+    ref={register}
   >
     {children}
   </Dropzone>

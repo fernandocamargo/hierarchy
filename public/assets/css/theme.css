@@ -515,14 +515,14 @@ nav h4 {
   width: 0;
 }
 
-.editor.intention:before,
-.editor.intention:after {
+.editor.uploading:before,
+.editor.uploading:after {
   content: '';
   position: fixed;
   z-index: 1;
 }
 
-.editor.intention:before {
+.editor.uploading:before {
   display: block;
   height: 100vh;
   right: 0;
@@ -531,15 +531,11 @@ nav h4 {
   width: calc(50vw - 1.5rem);
 }
 
-.editor.intention.accepting:before {
+.editor.uploading:before {
   background-image: linear-gradient(#fff, #0e8dbc);
 }
 
-.editor.intention.rejecting:before {
-  background-image: linear-gradient(#fff, #bd1e1e);
-}
-
-.editor.intention:after {
+.editor.uploading:after {
   animation: pulse 0.5s ease-in-out infinite alternate;
   border: dotted 0.5rem #fff;
   color: #fff;
@@ -560,14 +556,9 @@ nav h4 {
   width: calc(50vw - 4.5rem);
 }
 
-.editor.intention.accepting:after {
+.editor.uploading:after {
   border-image: linear-gradient(#0e8dbc, #fff) 20;
-  content: '\1F4E5 \A Drop your \A file here';
-}
-
-.editor.intention.rejecting:after {
-  border-image: linear-gradient(#bd1e1e, #fff) 20;
-  content: '\1F4E5 \A Invalid \A file format!';
+  content: '\1F4E5 \A Drop your \A content here';
 }
 
 .editor .instructions {

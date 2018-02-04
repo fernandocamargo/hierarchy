@@ -2,8 +2,8 @@ import { compose, withStateHandlers, withHandlers } from 'recompose';
 
 import property from 'utils/object/property';
 import connect from 'utils/state/connect';
-import read from 'utils/file-reader/read';
 import get from 'utils/clipboard/get';
+import drop from 'utils/dom/event/drop';
 
 import { initial, set, toggle, add, remove } from './reducers';
 
@@ -19,7 +19,7 @@ export const mapEvents = {
   add: property('add'),
   remove: property('remove'),
   paste: ({ set }) => get().then(set),
-  drop: ({ set }) => files => files.forEach(read().then(set)),
+  drop: ({ set }) => drop().then(set),
 };
 
 export default compose(
