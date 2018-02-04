@@ -1,4 +1,4 @@
-import reserved from 'constants/source/attributes/reserved';
+import reserved from 'constants/source/attributes';
 
 export default {
   property: {
