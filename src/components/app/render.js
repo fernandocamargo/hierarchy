@@ -18,6 +18,7 @@ export default ({
     <GUI
       nodes={nodes}
       actions={{ toggle, add, remove }}
+      active={!!nodes.length}
       fullscreen={!editor.active}
     />
     <nav>
