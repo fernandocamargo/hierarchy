@@ -1,22 +1,23 @@
 import update from 'immutability-helper';
 import Chance from 'chance';
 
+import assert from 'utils/string/assert';
 import fill from 'utils/object/fill';
 import get from 'utils/nodes/get';
 
 export const generator = new Chance();
 
-export const initial = () => ({
+export const initial = ({ source = {} }) => ({
   editor: {
     active: true,
     disabled: true,
   },
-  source: {},
   nodes: [],
+  source,
 });
 
 export const set = content => state => {
-  const source = JSON.parse(content);
+  const source = assert(content) ? JSON.parse(content) : content;
   const nodes = get(source);
 
   return {

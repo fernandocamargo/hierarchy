@@ -26,7 +26,7 @@ export default ({ browse }) => (
           Edit source
         </a>
       </li>
-      <li className="action download">
+      <li className="action download disabled">
         <a href="" title="Download source">
           Download source
         </a>

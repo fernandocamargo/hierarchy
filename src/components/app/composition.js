@@ -1,4 +1,4 @@
-import { compose, withStateHandlers, withHandlers } from 'recompose';
+import { compose, lifecycle, withStateHandlers, withHandlers } from 'recompose';
 
 import property from 'utils/object/property';
 import connect from 'utils/state/connect';
@@ -6,6 +6,14 @@ import get from 'utils/clipboard/get';
 import drop from 'utils/dom/event/drop';
 
 import { initial, set, toggle, add, remove } from './reducers';
+
+export const setCycle = {
+  componentDidMount() {
+    const { props: { set, source } } = this;
+
+    set(source);
+  },
+};
 
 export const setState = {
   set: connect(set),
@@ -25,4 +33,5 @@ export const mapEvents = {
 export default compose(
   withStateHandlers(initial, setState),
   withHandlers(mapEvents),
+  lifecycle(setCycle),
 );

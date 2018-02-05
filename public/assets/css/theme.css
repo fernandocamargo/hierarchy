@@ -39,7 +39,18 @@ nav h4 {
   padding: 1rem 0;
   text-align: center;
   text-decoration: none;
-  transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear, opacity 0.2s linear;
+}
+
+.app > nav .action.disabled a {
+  cursor: default;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.app > nav .action:not(.disabled) a:hover {
+  background-color: #7e78d2;
+  color: #fff;
 }
 
 .app > nav .action.toggle a {
@@ -62,11 +73,6 @@ nav h4 {
   background-color: #272635;
 }
 
-.app > nav .action a:hover {
-  background-color: #7e78d2;
-  color: #fff;
-}
-
 .app > nav .action a:after {
   display: block;
   font-size: 1.5rem;
@@ -74,7 +80,7 @@ nav h4 {
 }
 
 .app > nav .action.toggle a:after {
-  color: #bbc8cE;
+  color: #bbc8ce;
   content: '\E8D4';
 }
 
@@ -142,9 +148,7 @@ nav h4 {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  transition:
-    opacity 0.2s linear,
-    transform 0.2s linear, 
+  transition: opacity 0.2s linear, transform 0.2s linear,
     z-index 0.1s linear 0.3s;
   z-index: 1;
 }
@@ -179,7 +183,7 @@ nav h4 {
 }
 
 .gui .intro .category {
-  background-color: #51D6FF;
+  background-color: #51d6ff;
   color: #fff;
   font-family: 'Source Code Pro', monospace;
   font-size: 0.75rem;
@@ -413,10 +417,7 @@ nav h4 {
   opacity: 0;
   padding: 0 0.5rem;
   position: relative;
-  transition:
-    max-height 0.2s linear,
-    opacity 0.15s linear,
-    padding 0.2s linear;
+  transition: max-height 0.2s linear, opacity 0.15s linear, padding 0.2s linear;
 }
 
 .profile .actions:hover .action:not(.toggle),
@@ -547,8 +548,7 @@ nav h4 {
   line-height: 3rem;
   right: 1rem;
   text-align: center;
-  text-shadow:
-    0 1px 0 #ccc, 0 6px 1px rgba(0, 0, 0, 0.1),
+  text-shadow: 0 1px 0 #ccc, 0 6px 1px rgba(0, 0, 0, 0.1),
     0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
     0 3px 5px rgba(0, 0, 0, 0.2);
   top: 1rem;
@@ -570,9 +570,7 @@ nav h4 {
   line-height: 0.9rem;
   position: absolute;
   top: 2.5rem;
-  transition:
-    opacity 0.2s linear,
-    transform 0.2s linear, 
+  transition: opacity 0.2s linear, transform 0.2s linear,
     z-index 0.1s linear 0.3s;
   z-index: 1;
 }

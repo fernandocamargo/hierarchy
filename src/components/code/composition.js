@@ -10,13 +10,13 @@ export const replace = component => {
   node.innerHTML = highlight(source);
 };
 
-export default compose(
-  lifecycle({
-    componentDidMount() {
-      return replace(this);
-    },
-    componentDidUpdate() {
-      return replace(this);
-    },
-  }),
-);
+export const setCycle = {
+  componentDidMount() {
+    return replace(this);
+  },
+  componentDidUpdate() {
+    return replace(this);
+  },
+};
+
+export default compose(lifecycle(setCycle));
