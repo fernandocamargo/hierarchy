@@ -1,6 +1,8 @@
 import React from 'react';
 
-export default () => (
+import prevent from 'utils/dom/event/prevent';
+
+export default ({ browse }) => (
   <nav>
     <h4>Options</h4>
     <ul>
@@ -9,9 +11,9 @@ export default () => (
           Toggle editor
         </a>
       </li>
-      <li className="action load">
-        <a href="" title="Load source">
-          Load source
+      <li className="action browse">
+        <a href="" title="Browse files" onClick={prevent(browse)}>
+          Browse files
         </a>
       </li>
       <li className="action clear">

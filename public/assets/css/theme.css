@@ -46,7 +46,7 @@ nav h4 {
   background-color: #f7f9f9;
 }
 
-.app > nav .action.load a {
+.app > nav .action.browse a {
   background-color: #e1eef2;
 }
 
@@ -78,8 +78,8 @@ nav h4 {
   content: '\E8D4';
 }
 
-.app > nav .action.load a:after {
-  content: '\E226';
+.app > nav .action.browse a:after {
+  content: '\E89C';
 }
 
 .app > nav .action.clear a:after {

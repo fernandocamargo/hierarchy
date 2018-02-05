@@ -1,7 +1,7 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 
-export default ({ register, children, onDrop, onPaste }) => (
+export default ({ children, onDrop, onPaste, set }) => (
   <Dropzone
     onDrop={onDrop}
     className="app"
@@ -9,7 +9,7 @@ export default ({ register, children, onDrop, onPaste }) => (
     disableClick={true}
     multiple={false}
     onPaste={onPaste}
-    ref={register}
+    ref={set}
   >
     {children}
   </Dropzone>

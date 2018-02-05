@@ -1,20 +1,23 @@
-import { cloneElement, Children } from 'react';
-import { compose, withProps } from 'recompose';
+import { compose, withStateHandlers, withProps } from 'recompose';
 
-import assert from 'utils/string/assert';
+import connect from 'utils/state/connect';
+import clone from 'utils/rendering/clone/children';
 
-export const getProps = ({ children }) => ({
+import { initial, set } from './reducers';
+
+export const setState = {
+  set: connect(set),
+};
+
+export const getProps = ({ children, browse }) => ({
   children: ({ isDragActive }) =>
-    Children.map(children, child => {
-      const { type } = child;
-      const native = assert(type);
-
-      return native
-        ? child
-        : cloneElement(child, {
-            uploading: isDragActive,
-          });
+    clone(children, {
+      uploading: isDragActive,
+      browse,
     }),
 });
 
-export default compose(withProps(getProps));
+export default compose(
+  withStateHandlers(initial, setState),
+  withProps(getProps),
+);
