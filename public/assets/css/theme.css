@@ -597,6 +597,7 @@ nav h4 {
   color: #bdbdbd;
   border: 0;
   display: block;
+  font-family: 'Source Code Pro', monospace;
   font-size: 0.8rem;
   opacity: 0;
   padding: 2.5rem;
