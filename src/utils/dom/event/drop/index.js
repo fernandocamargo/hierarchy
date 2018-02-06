@@ -5,6 +5,6 @@ import transfer from 'utils/data/transfer';
 export default () => ({
   then: callback => (files, data) => [
     files.map(read().then(callback)),
-    data.filter(where('kind', 'string')).map(transfer().then(callback)),
+    data.filter(where('type', 'text/plain')).map(transfer().then(callback)),
   ],
 });

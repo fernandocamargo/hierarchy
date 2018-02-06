@@ -362,6 +362,12 @@ nav h4 {
   font-size: 0.9rem;
   padding: 0.5rem 1rem;
   position: relative;
+  transition: opacity 0.5s linear;
+}
+
+.node.dragging > .profile {
+  border-style: dashed;
+  opacity: 0.5;
 }
 
 .profile:before {
@@ -412,6 +418,7 @@ nav h4 {
 
 .profile .actions .action.toggle:hover ~ .action:not(.toggle),
 .profile .actions .action:not(.toggle) {
+  display: none;
   max-height: 0;
   overflow: hidden;
   opacity: 0;

@@ -1,9 +1,12 @@
 import { compose, shouldUpdate, withHandlers, withProps } from 'recompose';
+// import { DragSource, DropTarget } from 'react-dnd';
+import { DragSource } from 'react-dnd';
 
 import bind from 'utils/function/bind';
 import only from 'utils/object/only';
 
 export const onlyWhen = (current, next) =>
+  current.dragging !== next.dragging ||
   current.name !== next.name ||
   current.position !== next.position ||
   current.employees !== next.employees ||
@@ -35,6 +38,21 @@ export const getProps = ({
 });
 
 export default compose(
+  DragSource(
+    'node',
+    {
+      beginDrag({ name }) {
+        return {
+          name,
+        };
+      },
+    },
+    (connect, monitor) => ({
+      draggable: connect.dragSource(),
+      preview: connect.dragPreview(),
+      dragging: monitor.isDragging(),
+    }),
+  ),
   shouldUpdate(onlyWhen),
   withHandlers(mapEvents),
   withProps(getProps),

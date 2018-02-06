@@ -1,4 +1,6 @@
 import { compose, lifecycle, withStateHandlers, withHandlers } from 'recompose';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 import property from 'utils/object/property';
 import connect from 'utils/state/connect';
@@ -31,6 +33,7 @@ export const mapEvents = {
 };
 
 export default compose(
+  DragDropContext(HTML5Backend),
   withStateHandlers(initial, setState),
   withHandlers(mapEvents),
   lifecycle(setCycle),
