@@ -362,11 +362,15 @@ nav h4 {
   font-size: 0.9rem;
   padding: 0.5rem 1rem;
   position: relative;
-  transition: opacity 0.5s linear;
+  transition: background-color 0.25s linear;
 }
 
 .node.dragging > .profile {
+  background-color: rgba(255, 255, 255, 0.5);
   border-style: dashed;
+}
+
+.node.dragging > .profile .info {
   opacity: 0.5;
 }
 
@@ -387,6 +391,10 @@ nav h4 {
 
 .node:not(:last-child) > .profile:after {
   height: calc(100% + 2px);
+}
+
+.profile .info {
+  transition: opacity 0.25s linear;
 }
 
 .profile .info.name {

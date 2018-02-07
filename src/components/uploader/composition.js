@@ -3,16 +3,19 @@ import { compose, withStateHandlers, withProps } from 'recompose';
 import connect from 'utils/state/connect';
 import clone from 'utils/rendering/clone/children';
 
-import { initial, set } from './reducers';
+import { initial, register, drag, drop } from './reducers';
 
 export const setState = {
-  set: connect(set),
+  register: connect(register),
+  drag: connect(drag),
+  drop: connect(drop),
 };
 
-export const getProps = ({ children, browse }) => ({
+export const getProps = ({ children, onDrop, drop, browse, dragging }) => ({
+  drop: (...target) => drop(onDrop(...target)),
   children: ({ isDragActive }) =>
     clone(children, {
-      uploading: isDragActive,
+      uploading: !dragging && isDragActive,
       browse,
     }),
 });

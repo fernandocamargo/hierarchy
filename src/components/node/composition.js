@@ -1,4 +1,10 @@
-import { compose, shouldUpdate, withHandlers, withProps } from 'recompose';
+import {
+  compose,
+  shouldUpdate,
+  lifecycle,
+  withHandlers,
+  withProps,
+} from 'recompose';
 // import { DragSource, DropTarget } from 'react-dnd';
 import { DragSource } from 'react-dnd';
 
@@ -56,4 +62,13 @@ export default compose(
   shouldUpdate(onlyWhen),
   withHandlers(mapEvents),
   withProps(getProps),
+  lifecycle({
+    componentDidMount() {
+      return Object.assign(new Image(), {
+        src:
+          'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAQAAAD9CzEMAAAAaklEQVR4Ae3NQQqAIBSE4bmNSJcXxXOFoW6tRUUulfcW0vyznw9LxTZEVBQEWJ37A+1e0iAi2mdeHqgdkOWBog2EDnDygEV673cYQIPwyNccDH5bk9k0QGAcnokAAQIECDwRIDAUAQJsgU4o2sid5ZUWVgAAAABJRU5ErkJggg==',
+        onload: ({ currentTarget }) => this.props.preview(currentTarget),
+      });
+    },
+  }),
 );

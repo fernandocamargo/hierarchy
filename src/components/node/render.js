@@ -16,13 +16,11 @@ export default ({
 }) =>
   draggable(
     <li className={classnames('node', { dragging, expanded })}>
-      {preview(
-        <dl className="profile">
-          <dt className="info name">{name}</dt>
-          <dd className="info position">{position}</dd>
-          <Actions {...actions} />
-        </dl>,
-      )}
+      <dl className="profile">
+        <dt className="info name">{name}</dt>
+        <dd className="info position">{position}</dd>
+        <Actions {...actions} />
+      </dl>
       <Nodes {...nodes} />
     </li>,
   );
