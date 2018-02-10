@@ -336,6 +336,10 @@ nav h4 {
   position: relative;
 }
 
+img {
+  border: solid 1px red;
+}
+
 .node:not(:last-child):before,
 .profile:before,
 .profile:after {
@@ -360,7 +364,7 @@ nav h4 {
   display: inline-flex;
   flex-direction: column;
   font-size: 0.9rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 4rem 0.5rem 1rem;
   position: relative;
   transition: background-color 0.25s linear;
 }
@@ -401,9 +405,11 @@ nav h4 {
   font-weight: bold;
 }
 
-.profile .info.name:before {
-  content: '';
-  display: block;
+.profile .info.position {
+  font-style: italic;
+}
+
+.profile .actions {
   height: 100%;
   left: 0;
   position: absolute;
@@ -411,35 +417,12 @@ nav h4 {
   width: 100%;
 }
 
-.profile .info.position {
-  font-style: italic;
-}
-
 .profile .actions nav ul {
-  background-color: #f2f2f2;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin: 0.5rem 0;
+  justify-content: flex-end;
+  padding: 0.25rem 0.5rem;
   white-space: nowrap;
-}
-
-.profile .actions .action.toggle:hover ~ .action:not(.toggle),
-.profile .actions .action:not(.toggle) {
-  display: none;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  padding: 0 0.5rem;
-  position: relative;
-  transition: max-height 0.2s linear, opacity 0.15s linear, padding 0.2s linear;
-}
-
-.profile .actions:hover .action:not(.toggle),
-.profile .info.name:hover ~ .actions .action:not(.toggle) {
-  opacity: 1;
-  max-height: 2rem;
-  padding: 0.5rem;
 }
 
 .profile .actions .action.toggle {
@@ -454,18 +437,6 @@ nav h4 {
   transform: translateY(-50%);
   width: 1.5rem;
   z-index: 1;
-}
-
-.profile .actions .action:not(.toggle):not(:last-child):after {
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVQYV2NkYGD4z8DAwMjIAAUADikBA/gvnngAAAAASUVORK5CYII=);
-  content: '';
-  display: block;
-  right: 0;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 50%;
-  width: 1px;
 }
 
 .profile .actions .action a {
@@ -483,24 +454,20 @@ nav h4 {
 }
 
 .profile .actions .action a:after {
+  color: #000;
   display: inline-block;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  transition: color 0.25s linear;
+}
+
+.profile:hover .actions .action:not(.toggle) a:after {
+  color: #919a9e;
 }
 
 .profile .actions .action:not(.toggle) a:after {
-  font-size: 0.75rem;
-  line-height: 0.75rem;
-  text-decoration: none;
-  text-transform: lowercase;
-}
-
-.profile .actions .action:not(.toggle) a:hover:after {
-  text-decoration: underline;
-}
-
-.profile .actions .action.toggle a:after {
-  color: #000;
-  font-size: 1.5rem;
-  line-height: 1.5rem;
+  color: #ededed;
+  font-family: 'Material Icons';
 }
 
 .node:not(.expanded) > .profile .actions .action.toggle a:after {
@@ -512,13 +479,19 @@ nav h4 {
 }
 
 .profile .actions .action.add a:after {
+  content: '\E7FE';
+}
+
+.profile .actions .action.add a:hover:after {
   color: #23ce6b;
-  content: 'Add employee';
 }
 
 .profile .actions .action.remove a:after {
+  content: '\E92B';
+}
+
+.profile .actions .action.remove a:hover:after {
   color: #bd1e1e;
-  content: 'Remove';
 }
 
 .editor {

@@ -5,6 +5,7 @@ import Nodes from 'components/nodes';
 import Actions from 'components/actions';
 
 export default ({
+  droppable,
   draggable,
   dragging,
   preview,
@@ -14,13 +15,15 @@ export default ({
   actions,
   nodes,
 }) =>
-  draggable(
-    <li className={classnames('node', { dragging, expanded })}>
-      <dl className="profile">
-        <dt className="info name">{name}</dt>
-        <dd className="info position">{position}</dd>
-        <Actions {...actions} />
-      </dl>
-      <Nodes {...nodes} />
-    </li>,
+  droppable(
+    draggable(
+      <li className={classnames('node', { dragging, expanded })}>
+        <dl className="profile">
+          <dt className="info name">{name}</dt>
+          <dd className="info position">{position}</dd>
+          <Actions {...actions} />
+        </dl>
+        <Nodes {...nodes} />
+      </li>,
+    ),
   );

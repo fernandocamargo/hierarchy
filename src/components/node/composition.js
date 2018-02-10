@@ -5,8 +5,7 @@ import {
   withHandlers,
   withProps,
 } from 'recompose';
-// import { DragSource, DropTarget } from 'react-dnd';
-import { DragSource } from 'react-dnd';
+import { DragSource, DropTarget } from 'react-dnd';
 
 import bind from 'utils/function/bind';
 import only from 'utils/object/only';
@@ -44,13 +43,25 @@ export const getProps = ({
 });
 
 export default compose(
+  DropTarget(
+    'node',
+    {
+      /*
+      hover({ path: { nodes: n1 } }, monitor, component) {
+        const { path: { nodes: n2 } } = monitor.getItem();
+        return;
+      },
+      */
+    },
+    connect => ({
+      droppable: connect.dropTarget(),
+    }),
+  ),
   DragSource(
     'node',
     {
-      beginDrag({ name }) {
-        return {
-          name,
-        };
+      beginDrag(node) {
+        return node;
       },
     },
     (connect, monitor) => ({
