@@ -407,6 +407,7 @@ img {
 
 .profile .info.position {
   font-style: italic;
+  white-space: nowrap;
 }
 
 .profile .actions {

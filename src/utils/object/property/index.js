@@ -1,1 +1,1 @@
-export default property => object => object[property];
+export default (property, defaults) => object => object[property] || defaults;
